@@ -48,6 +48,13 @@ app.get('/about', (req, res) => {
        currentYear: new Date().getFullYear()
     });
 });
+app.get('/project', (req, res) => {
+    res.render('project.hbs', {
+       pageTitle: 'Project Page',
+       msg: 'This page contains link to github',
+       currentYear: new Date().getFullYear()
+    });
+});
 app.get('/bad',(req, res) =>{
    res.send({
     errorMsg: 'unable to handle request'
