@@ -20,13 +20,13 @@ app.use((req, res, next) => {
     });
     next();
 });
-app.use((req, res, next) => {
-  res.render('maintainence.hbs', {
-    pageTitle:'Maintainence Page',
-    msg: 'Sorry we are under Maintainance',
-    currentYear: new Date().getFullYear()
-  });
-});
+// app.use((req, res, next) => {
+//   res.render('maintainence.hbs', {
+//     pageTitle:'Maintainence Page',
+//     msg: 'Sorry we are under Maintainance',
+//     currentYear: new Date().getFullYear()
+//   });
+// });
 app.use(express.static(__dirname + '/public'));
 hbs.registerHelper('getCurrentYear',( ) => {
  return new Date().getFullYear();
