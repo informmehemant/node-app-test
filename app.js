@@ -40,15 +40,15 @@ hbs.registerHelper('screamIt', (text) => {
 
 app.get('/', ( req , res ) => {
     //res.send('<h1>Hello Express</h1>');
-    // res.render('home.hbs',{
-    //     pageTitle:'Home page',
-    //     msg: 'Welcome! ',
-    //     currentYear: new Date().getFullYear()
-    // });   
-    res.send({
-        pageTitle: 'Home page',
-        msg: 'Welcome to Home page'
-    });
+    res.render('home.hbs',{
+        pageTitle:'Home page',
+        msg: 'Welcome! ',
+        currentYear: new Date().getFullYear()
+    });   
+    // res.send({
+    //     pageTitle: 'Home page',
+    //     msg: 'Welcome to Home page'
+    // });
 });
 
 app.get('/about', (req, res) => {
