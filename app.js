@@ -1,12 +1,11 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
-var app = express();
+const app = express();
 const port = process.env.PORT || 3000;
 app.set('view engine','hbs');
 // middleware
 hbs.registerPartials(__dirname + '/views/partials');
-
 
 //middleware
 app.use((req, res, next) => {
@@ -20,6 +19,7 @@ app.use((req, res, next) => {
     });
     next();
 });
+
 // app.use((req, res, next) => {
 //   res.render('maintainence.hbs', {
 //     pageTitle:'Maintainence Page',
@@ -27,27 +27,37 @@ app.use((req, res, next) => {
 //     currentYear: new Date().getFullYear()
 //   });
 // });
+
 app.use(express.static(__dirname + '/public'));
+
 hbs.registerHelper('getCurrentYear',( ) => {
  return new Date().getFullYear();
 });
+
 hbs.registerHelper('screamIt', (text) => {
   return text.toUpperCase();
 });
+
 app.get('/', ( req , res ) => {
     //res.send('<h1>Hello Express</h1>');
-    res.render('home.hbs',{
-        pageTitle:'Home page',
-        msg: 'Welcome! ',
-        currentYear: new Date().getFullYear()
-    });   
+    // res.render('home.hbs',{
+    //     pageTitle:'Home page',
+    //     msg: 'Welcome! ',
+    //     currentYear: new Date().getFullYear()
+    // });   
+    res.send({
+        pageTitle: 'Home page',
+        msg: 'Welcome to Home page'
+    });
 });
+
 app.get('/about', (req, res) => {
     res.render('about.hbs', {
        pageTitle: 'About Page',
        currentYear: new Date().getFullYear()
     });
 });
+
 app.get('/project', (req, res) => {
     res.render('project.hbs', {
        pageTitle: 'Project Page',
@@ -55,11 +65,15 @@ app.get('/project', (req, res) => {
        currentYear: new Date().getFullYear()
     });
 });
-app.get('/bad',(req, res) =>{
+
+app.get('/bad',(req, res) => {
    res.send({
     errorMsg: 'unable to handle request'
    });
 });
-app.listen(port,() => {
+
+app.listen(port, () => {
     console.log(`server is up on port  ${port}`);
 });
+
+module.exports.app = app;
